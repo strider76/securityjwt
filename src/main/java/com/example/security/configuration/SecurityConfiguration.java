@@ -68,11 +68,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers(HttpMethod.POST, "/login").permitAll()
-                    .antMatchers(HttpMethod.GET, "/establishment*").permitAll()
-                    .antMatchers(HttpMethod.GET, "/sector*").permitAll()
-                    .antMatchers(HttpMethod.POST, "/establishment_registration/process*").permitAll()
-                    .antMatchers(HttpMethod.POST, "/establishment_registration/request").permitAll()
-                    .anyRequest().authenticated().and()
+                .antMatchers(HttpMethod.POST,"/signup").permitAll()
+                .anyRequest().authenticated().and()
 
                 .addFilterBefore(loginFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
